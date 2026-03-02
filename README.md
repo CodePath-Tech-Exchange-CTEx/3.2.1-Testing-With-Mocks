@@ -19,7 +19,7 @@ This repo is a teaching scaffold for a lesson on **testing with mocks**, using a
    ```bash
    pip install -r requirements.txt
    ```
-3. **Configure environment**
+3. **Configure environment (.env)**
    - Copy `.env.example` to `.env`:
      ```bash
      cp .env.example .env       # or copy .env.example .env on Windows
@@ -53,6 +53,32 @@ pytest
 The `pytest.ini` is set up so that:
 - `src` is on the Python path
 - tests live under the `tests` directory
+
+### Optional: BigQuery setup for integration-ish tests
+
+You **do not** need real BigQuery access for the core unit tests. If you want
+the "integration-ish" tests and CLI to talk to a real BigQuery table:
+
+1. **Set these environment variables in your shell** (Cloud Shell or local):
+   ```bash
+   export GOOGLE_CLOUD_PROJECT="your-gcp-project-id"
+   export BIGQUERY_DATASET="321_dataset"
+   export BIGQUERY_TABLE="slides_example"
+   ```
+2. **Seed the table** using the helper script:
+   ```bash
+   ./scripts/seed_bq.sh
+   ```
+3. **(Optional) Enable BigQuery integration tests**:
+   - Set `RUN_BQ_TESTS=1` before running pytest so tests that touch BigQuery
+     are enabled:
+     ```bash
+     export RUN_BQ_TESTS=1
+     pytest
+     ```
+
+The `scripts/bq_setup.sql` + `scripts/seed_bq.sh` pair together simulate the
+**Database dependency** from Slide 10 in a controlled way for this repo.
 
 ### Slide mapping
 
