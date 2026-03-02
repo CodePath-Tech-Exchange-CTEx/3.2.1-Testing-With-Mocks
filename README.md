@@ -138,5 +138,4 @@ To keep the examples consistent with the slides and avoid breaking prepared test
   - If you must change behavior, update or add tests deliberately to reflect the new contract.
   - When in doubt, deprecate old behavior gradually instead of deleting it outright.
 
-Following these rules keeps your slides, live coding, and student starter tests in sync while still allowing you to iterate on the design.
 
