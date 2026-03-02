@@ -92,6 +92,9 @@ def write_expenses_v3(
 
     Slides 14–15: inject behavior via a function instead of a full object.
     Slide 16: uses a default argument to keep compatibility with existing calls.
+
+    For simplicity we let any exceptions from currency_conversion_fn propagate
+    to the caller; tests can then use side_effect to simulate API failures.
     """
     outfile.write(_format_header())
 
