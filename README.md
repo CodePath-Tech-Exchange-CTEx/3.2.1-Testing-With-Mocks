@@ -1,6 +1,6 @@
 # Testing with mocks — Expense report example
 
-This repo is a teaching scaffold for a lesson on **testing with mocks**, using an **expense report** example and a (mockable) BigQuery client.
+This repo is a teaching scaffold for a lesson on **testing with mocks**, using an **expense report** example and a (mockable) BigQuery client (both functional and class-based via `DatabaseBQ`).
 
 ### Setup
 
@@ -67,10 +67,15 @@ Use this as a guide to connect the slides to the code:
   - `src/example/expense_report.py`
     - Calculating totals
     - Separating I/O from computation so it is easy to test
+  - `src/example/models.py`
+    - Shared `ExpenseRow` shape for database rows
 
 - **Slide 8–11: Collaborators and mocks**
   - `src/example/bigquery_client.py`
     - Thin wrapper around BigQuery access (to be mocked in tests)
+  - `src/example/database_bq.py`
+    - `DatabaseBQ` class to mirror `Database.connect("expenses")` from the slides
+    - Example of wrapping network I/O behind a small API surface
   - `tests/test_expense_report.py`
     - Using mocks/fakes/doubles for collaborators
 
