@@ -1,32 +1,13 @@
 from __future__ import annotations
 
-import os
-from typing import Iterable
+"""
+Thin wrapper CLI kept for backwards compatibility with the slides.
 
-from dotenv import load_dotenv
+Instead of having its own logic, this module simply delegates to the
+top-level `src.cli.main`, so there is a single end-to-end entrypoint.
+"""
 
-from .bigquery_client import fetch_expense_rows
-from .expense_report import parse_expenses, summarize_by_category
-
-
-def main() -> None:
-    load_dotenv()
-
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "")
-    dataset = os.environ.get("BIGQUERY_DATASET", "")
-    table = os.environ.get("BIGQUERY_TABLE", "")
-
-    rows: Iterable[dict] = fetch_expense_rows(
-        project_id=project_id,
-        dataset=dataset,
-        table=table,
-    )
-    expenses = parse_expenses(rows)
-    summary = summarize_by_category(expenses)
-
-    print("Expense totals by category:")
-    for category, total in summary.items():
-        print(f"- {category}: {total:.2f}")
+from ..cli import main
 
 
 if __name__ == "__main__":
