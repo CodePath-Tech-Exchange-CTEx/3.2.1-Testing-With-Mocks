@@ -28,6 +28,20 @@ This repo is a teaching scaffold for a lesson on **testing with mocks**, using a
      - `GOOGLE_CLOUD_PROJECT`
      - `BIGQUERY_DATASET`
      - `BIGQUERY_TABLE`
+4. **Set these environment variables in your shell** (Cloud Shell or local):
+   ```bash
+   export GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+   export BIGQUERY_DATASET=321_dataset
+   export BIGQUERY_TABLE=slides_example
+   ```
+5. **Make the script executable** 
+   ``` bash
+   chmod +x scripts/seed_bq.sh
+   ```
+6. **Seed the table** using the helper script:
+   ```bash
+   ./scripts/seed_bq.sh
+   ```
 
 ### How to run the CLI
 
@@ -59,16 +73,6 @@ The `pytest.ini` is set up so that:
 You **do not** need real BigQuery access for the core unit tests. If you want
 the "integration-ish" tests and CLI to talk to a real BigQuery table:
 
-1. **Set these environment variables in your shell** (Cloud Shell or local):
-   ```bash
-   export GOOGLE_CLOUD_PROJECT="your-gcp-project-id"
-   export BIGQUERY_DATASET="321_dataset"
-   export BIGQUERY_TABLE="slides_example"
-   ```
-2. **Seed the table** using the helper script:
-   ```bash
-   ./scripts/seed_bq.sh
-   ```
 3. **(Optional) Enable BigQuery integration tests**:
    - Set `RUN_BQ_TESTS=1` before running pytest so tests that touch BigQuery
      are enabled:
