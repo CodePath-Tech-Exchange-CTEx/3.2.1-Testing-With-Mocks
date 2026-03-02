@@ -25,6 +25,11 @@ echo "Seeding BigQuery table: ${GOOGLE_CLOUD_PROJECT}.${BIGQUERY_DATASET}.${BIGQ
 
 BQ_TABLE_ID="${GOOGLE_CLOUD_PROJECT}.${BIGQUERY_DATASET}.${BIGQUERY_TABLE}"
 
+# Ensure the dataset exists before creating the table. If it already exists,
+# BigQuery will return a gentle error which we ignore because of -euo pipefail.
+echo "Ensuring dataset exists: ${GOOGLE_CLOUD_PROJECT}:${BIGQUERY_DATASET}"
+bq --location=US mk --dataset "${GOOGLE_CLOUD_PROJECT}:${BIGQUERY_DATASET}" 2>/dev/null || true
+
 # Option 2: build a single fully-qualified table ID in the shell and
 # substitute it into the SQL before sending it to BigQuery. This keeps
 # the .sql file generic while avoiding ${...} being interpreted literally
