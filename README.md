@@ -68,12 +68,12 @@ The `pytest.ini` is set up so that:
 - `src` is on the Python path
 - tests live under the `tests` directory
 
-### Optional: BigQuery setup for integration-ish tests
+### When ready: BigQuery setup for integration-ish tests
 
 You **do not** need real BigQuery access for the core unit tests. If you want
 the "integration-ish" tests and CLI to talk to a real BigQuery table:
 
-3. **(Optional) Enable BigQuery integration tests**:
+3. **(When Ready) Enable BigQuery integration tests**:
    - Set `RUN_BQ_TESTS=1` before running pytest so tests that touch BigQuery
      are enabled:
      ```bash
